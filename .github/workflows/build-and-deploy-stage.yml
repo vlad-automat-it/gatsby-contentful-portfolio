@@ -2,7 +2,7 @@ name: Deploy to Amplify on Tag
 on:
   push:
     tags:
-      - "v*-phoenix"
+      - "v*-phoenix-stage"
 
 jobs:
   deploy:
@@ -23,3 +23,5 @@ jobs:
             --branch-name master \
             --job-id "$JOB_ID" \
             --job-type RELEASE
+
+#test
