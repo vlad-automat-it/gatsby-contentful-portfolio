@@ -1,8 +1,8 @@
 name: Deploy to Amplify on Tag
 on:
   push:
-    branches:
-      - "master"
+    tags:
+      - "v*-phoenix"
 
 jobs:
   deploy:
