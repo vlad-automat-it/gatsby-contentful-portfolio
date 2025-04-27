@@ -11,11 +11,15 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: "arn:aws:iam::730335447290:role/aplanet-test-role"
+          role-session-name: GithubActions
+          role-skip-session-tagging: true
+          role-duration-seconds: 1200
+
       - name: Deploy to Amplify
-        env:
-          AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           JOB_ID=$(date +%s) 
           aws amplify start-job \
