@@ -22,3 +22,4 @@ jobs:
             --app-id "${{ secrets.AMPLIFY_APP_ID }}" \
             --branch-name master \
             --job-id "$JOB_ID"
+            --job-type RELEASE
