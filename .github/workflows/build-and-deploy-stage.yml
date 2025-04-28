@@ -1,8 +1,12 @@
 name: Deploy to Amplify on Tag
+
 on:
   push:
     tags:
       - "v*-phoenix-stage"
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
@@ -14,7 +18,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: "arn:aws:iam::730335447290:role/aplanet-test-role"
+          role-to-assume: "arn:aws:iam::730335447290:role/github-oidc-provider-aws"
           role-session-name: GithubActions
           role-skip-session-tagging: true
           role-duration-seconds: 1200
@@ -28,4 +32,3 @@ jobs:
             --job-id "$JOB_ID" \
             --job-type RELEASE
 
-#test
